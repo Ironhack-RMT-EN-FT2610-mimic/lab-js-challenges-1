@@ -36,7 +36,23 @@ function multiplyBy() {}
 const original = ["cat", "dog", "fish", "bird", "cat", "fish"];
 const toRemove = ["cat", "dog"];
 
-function filterOut() {}
+function filterOut(originalArray, wordToRemoveArray) {
+
+  let filteredArray = []
+
+  for (let i = 0; i < originalArray.length; i++) {
+    let eachWord = originalArray[i]
+    if (wordToRemoveArray.includes(eachWord) === false) {
+      filteredArray.push(eachWord)
+    }
+  }
+
+  // console.log(filteredArray)
+  return filteredArray
+
+}
+
+filterOut(original, toRemove)
 
 
 
@@ -85,4 +101,39 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+
+  let maxProduct = 0;
+
+  for (let i = 0; i < matrix.length; i++) {
+
+    let rows = matrix[i]
+    // console.log(rows)
+
+    for (let j = 0; j < rows.length; j++) {
+
+      let eachNumber = rows[j]
+      // console.log(eachNumber)
+      let productHorizontal = eachNumber * rows[j+1] * rows[j+2] * rows[j+3]
+      // console.log(product)
+      if (productHorizontal !== NaN && productHorizontal > maxProduct) {
+        maxProduct = productHorizontal
+      }
+
+     if (matrix[i+1] !== undefined && matrix[i+2] !== undefined && matrix[i+3] !== undefined) {
+        let poductVertical = eachNumber * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j]
+        if (poductVertical !== NaN && poductVertical > maxProduct) {
+          maxProduct = poductVertical
+        }
+     }
+
+    }
+
+  }
+
+  console.log(maxProduct)
+  return maxProduct
+
+}
+
+greatestProduct(matrix)
